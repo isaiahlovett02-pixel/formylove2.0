@@ -556,12 +556,17 @@
                 }
             });
             
+            let moveTimeout;
             function moveNoButton() {
+                // Debounce to avoid excessive layout calculations
+                if (moveTimeout) return;
+                moveTimeout = setTimeout(() => { moveTimeout = null; }, 300);
+                
                 const container = noBtn.parentElement;
                 const containerRect = container.getBoundingClientRect();
                 const btnRect = noBtn.getBoundingClientRect();
                 
-                // Calculate available space
+                // Calculate available space (60px padding to keep button visible)
                 const maxX = containerRect.width - btnRect.width - 60;
                 const maxY = 100; // Vertical movement within reasonable bounds
                 
@@ -575,7 +580,7 @@
                 noBtn.style.transition = 'all 0.3s ease';
             }
             
-            // Initialize audio context on user interaction
+            // Initialize audio context on user interaction (defensive setup for potential future audio features)
             document.body.addEventListener('click', () => {
                 if (!audioContext) {
                     audioContext = new (window.AudioContext || window.webkitAudioContext)();
