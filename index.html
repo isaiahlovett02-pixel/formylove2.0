@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Be My Valentine ❤️</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Montserrat:wght@300;400;500&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
     <style>
         * {
@@ -22,6 +21,22 @@
             align-items: center;
             padding: 20px;
             overflow-x: hidden;
+            position: relative;
+        }
+        
+        /* Floating decorations */
+        .floating-decoration {
+            position: fixed;
+            font-size: 2rem;
+            pointer-events: none;
+            opacity: 0.7;
+            animation: float 6s infinite ease-in-out;
+            z-index: 1;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-30px) rotate(10deg); }
         }
         
         .valentine-container {
@@ -34,6 +49,7 @@
             border: 15px solid #ff69b4;
             position: relative;
             animation: fadeIn 1.5s ease-out;
+            z-index: 10;
         }
         
         @keyframes fadeIn {
@@ -149,222 +165,114 @@
             line-height: 1.8;
             color: #444;
             text-align: center;
-            font-weight: 400;
+            font-style: italic;
         }
         
-        .letter-content::first-letter {
-            font-family: 'Dancing Script', cursive;
-            font-size: 4rem;
-            color: #ff1493;
-            float: left;
-            line-height: 0.8;
-            margin-right: 10px;
-        }
-        
-        .proposal-section {
-            background: linear-gradient(135deg, #ff69b4, #ff1493);
-            padding: 40px;
-            border-radius: 30px;
-            margin: 40px 0;
+        .question-box {
+            background: linear-gradient(135deg, #8a2be2, #ff1493);
+            padding: 35px;
+            border-radius: 25px;
+            margin: 30px 0;
             text-align: center;
-            box-shadow: 0 15px 35px rgba(255, 20, 147, 0.3);
-            width: 90%;
-            max-width: 800px;
-            position: relative;
-            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(138, 43, 226, 0.3);
         }
         
-        .proposal-section::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100"><path fill="white" fill-opacity="0.1" d="M50,30 C60,20 80,20 90,30 C100,40 100,60 90,70 C80,80 60,80 50,70 C40,80 20,80 10,70 C0,60 0,40 10,30 C20,20 40,20 50,30 Z" /></svg>');
-            background-size: 100px;
-        }
-        
-        .proposal-question {
-            font-family: 'Playfair Display', serif;
-            font-size: 3.8rem;
+        .big-question {
+            font-size: 2.5rem;
+            font-weight: 700;
             color: white;
             margin-bottom: 30px;
-            text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.2);
-            position: relative;
-            z-index: 1;
+            font-family: 'Playfair Display', serif;
         }
         
         .buttons-row {
             display: flex;
+            gap: 30px;
             justify-content: center;
-            gap: 50px;
-            margin-top: 40px;
             flex-wrap: wrap;
+            position: relative;
         }
         
         .response-btn {
-            padding: 22px 60px;
-            font-size: 2rem;
+            padding: 20px 50px;
+            font-size: 1.6rem;
             border: none;
-            border-radius: 70px;
+            border-radius: 50px;
             cursor: pointer;
-            transition: all 0.3s ease;
             font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            min-width: 250px;
-            justify-content: center;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+            transition: all 0.3s ease;
+            font-family: 'Montserrat', sans-serif;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
             position: relative;
-            overflow: hidden;
-            z-index: 1;
         }
         
-        .response-btn::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(255, 255, 255, 0.1);
-            z-index: -1;
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform 0.4s ease;
-        }
-        
-        .response-btn:hover::before {
-            transform: scaleX(1);
+        /* Visible focus styles for accessibility */
+        .response-btn:focus {
+            outline: 3px solid #fff;
+            outline-offset: 4px;
         }
         
         .yes-btn {
-            background: linear-gradient(to right, #00b09b, #96c93d);
+            background: linear-gradient(135deg, #ff69b4, #ff1493);
             color: white;
-            animation: gentlePulse 2.5s infinite;
         }
         
-        @keyframes gentlePulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
+        .yes-btn:hover {
+            background: linear-gradient(135deg, #ff1493, #ff69b4);
+            transform: scale(1.1);
+            box-shadow: 0 12px 30px rgba(255, 20, 147, 0.4);
         }
         
         .no-btn {
-            background: linear-gradient(to right, #ff416c, #ff4b2b);
-            color: white;
+            background: linear-gradient(135deg, #ddd, #ccc);
+            color: #666;
+            transition: all 0.2s ease;
         }
         
-        .response-btn:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.35);
-        }
-        
-        .response-btn:active {
-            transform: translateY(-2px);
-        }
-        
-        .response-display {
-            min-height: 150px;
-            margin: 50px 0 30px;
-            text-align: center;
-            display: none;
-            width: 90%;
-            max-width: 800px;
+        .no-btn:hover {
+            background: linear-gradient(135deg, #ccc, #bbb);
         }
         
         .celebration-message {
+            margin-top: 30px;
+            font-size: 1.8rem;
+            color: white;
+            text-align: center;
             font-family: 'Dancing Script', cursive;
-            font-size: 4rem;
-            color: #ff1493;
-            text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.1);
-            animation: messageAppear 1s ease-out;
-            background: rgba(255, 255, 255, 0.9);
-            padding: 30px;
-            border-radius: 25px;
-            box-shadow: 0 10px 30px rgba(255, 20, 147, 0.2);
+            min-height: 40px;
         }
         
-        @keyframes messageAppear {
-            0% { transform: scale(0.3) rotate(-10deg); opacity: 0; }
-            100% { transform: scale(1) rotate(0); opacity: 1; }
-        }
-        
-        .floating-decorations {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            pointer-events: none;
-            overflow: hidden;
-            z-index: 0;
-        }
-        
-        .floating-element {
-            position: absolute;
-            font-size: 28px;
-            opacity: 0;
-            animation: floatAround 10s linear infinite;
-        }
-        
-        @keyframes floatAround {
-            0% {
-                transform: translateY(100vh) rotate(0deg);
-                opacity: 0;
-            }
-            10% {
-                opacity: 0.7;
-            }
-            90% {
-                opacity: 0.7;
-            }
-            100% {
-                transform: translateY(-100px) rotate(360deg);
-                opacity: 0;
-            }
-        }
-        
-        .footer-section {
+        .footer {
+            background: linear-gradient(90deg, #8a2be2, #ff1493);
             padding: 30px;
             text-align: center;
-            color: #ff69b4;
-            font-size: 1.4rem;
-            border-top: 3px dashed #ffb6c1;
-            background: rgba(255, 255, 255, 0.8);
-            font-weight: 500;
+            color: white;
         }
         
-        .footer-heart {
-            color: #ff1493;
-            animation: heartbeat 1.2s infinite;
+        .footer-text {
+            font-size: 1.3rem;
+            opacity: 0.9;
         }
         
-        @keyframes heartbeat {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.2); }
-            100% { transform: scale(1); }
+        /* Canvas for confetti */
+        #confetti-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9999;
         }
         
-        @media (max-width: 900px) {
+        /* Responsive design */
+        @media (max-width: 768px) {
             .main-title {
-                font-size: 3.5rem;
-            }
-            
-            .proposal-question {
                 font-size: 3rem;
             }
             
-            .celebration-message {
-                font-size: 3rem;
-            }
-            
-            .response-btn {
-                padding: 20px 45px;
-                font-size: 1.7rem;
-                min-width: 200px;
+            .tagline {
+                font-size: 1.3rem;
             }
             
             .icon-box {
@@ -374,31 +282,30 @@
             }
             
             .letter-content {
-                font-size: 1.5rem;
-            }
-        }
-        
-        @media (max-width: 600px) {
-            .valentine-container {
-                border-width: 10px;
+                font-size: 1.3rem;
             }
             
-            .main-title {
-                font-size: 2.8rem;
-            }
-            
-            .proposal-question {
-                font-size: 2.5rem;
-            }
-            
-            .buttons-row {
-                flex-direction: column;
-                align-items: center;
-                gap: 30px;
+            .big-question {
+                font-size: 2rem;
             }
             
             .response-btn {
-                width: 90%;
+                padding: 15px 35px;
+                font-size: 1.3rem;
+            }
+            
+            .buttons-row {
+                gap: 20px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .main-title {
+                font-size: 2.5rem;
+            }
+            
+            .romantic-icons {
+                gap: 20px;
             }
             
             .icon-box {
@@ -406,297 +313,275 @@
                 height: 100px;
                 font-size: 3rem;
             }
-            
-            .romantic-icons {
-                gap: 20px;
-            }
-            
-            .content-section {
-                padding: 40px 25px;
-            }
         }
     </style>
 </head>
 <body>
-    <div class="valentine-container">
-        <div class="floating-decorations" id="floatingDecorations"></div>
+    <!-- Canvas for confetti -->
+    <canvas id="confetti-canvas"></canvas>
+    
+    <div class="valentine-container" role="main">
+        <header class="header-section">
+            <h1 class="main-title">Will You Be My Valentine?</h1>
+            <p class="tagline">A Special Question Just for You ✨</p>
+        </header>
         
-        <div class="header-section">
-            <h1 class="main-title">My Forever Valentine</h1>
-            <p class="tagline">You are the love story I always dreamed of</p>
-        </div>
-        
-        <div class="content-section">
-            <div class="romantic-icons">
-                <div class="icon-box">
-                    <i class="fas fa-heart"></i>
-                </div>
-                <div class="icon-box">
-                    <i class="fas fa-kiss-wink-heart"></i>
-                </div>
-                <div class="icon-box">
-                    <i class="fas fa-ring"></i>
-                </div>
-                <div class="icon-box">
-                    <i class="fas fa-star"></i>
-                </div>
+        <section class="content-section">
+            <div class="romantic-icons" role="presentation" aria-label="Romantic decorations">
+                <div class="icon-box">💕</div>
+                <div class="icon-box">💖</div>
+                <div class="icon-box">🌹</div>
+                <div class="icon-box">💝</div>
             </div>
             
             <div class="love-letter">
-                <div class="letter-content">
-                    From the moment we met, my world changed colors. Every laugh we share, 
-                    every glance we exchange, every moment together feels like a beautiful dream. 
-                    You are my sunshine on cloudy days, my anchor in stormy seas, and the greatest 
-                    blessing I've ever received. My heart beats for you, today and always.
-                </div>
+                <p class="letter-content">
+                    You light up my world in ways I never imagined. 
+                    Every moment with you feels like a dream come true. 
+                    Will you make this Valentine's Day extra special?
+                </p>
             </div>
             
-            <div class="proposal-section">
-                <div class="proposal-question">
-                    Will you be my Valentine? ❤️
-                </div>
-                
+            <div class="question-box" role="region" aria-label="Valentine's Day question">
+                <h2 class="big-question">Will You Be My Valentine? 💘</h2>
                 <div class="buttons-row">
-                    <button class="response-btn yes-btn" id="yesBtn">
-                        <i class="fas fa-heart"></i> YES, A Thousand Times!
+                    <button class="response-btn yes-btn" id="yesBtn" aria-label="Say yes to being my Valentine">
+                        💖 YES, A Thousand Times!
                     </button>
-                    <button class="response-btn no-btn" id="noBtn">
-                        <i class="fas fa-times"></i> I Need to Think
+                    <button class="response-btn no-btn" id="noBtn" aria-label="Decline being my Valentine">
+                        🙅 No
                     </button>
                 </div>
+                <div class="celebration-message" id="celebrationMessage" role="status" aria-live="polite"></div>
             </div>
-            
-            <div class="response-display" id="responseDisplay">
-                <p class="celebration-message" id="celebrationMessage"></p>
-            </div>
-        </div>
+        </section>
         
-        <div class="footer-section">
-            <p>Made with <i class="fas fa-heart footer-heart"></i> for the most wonderful person in the universe</p>
-            <p>You complete me in every way</p>
-        </div>
+        <footer class="footer">
+            <p class="footer-text">Made with ❤️ for someone special</p>
+        </footer>
     </div>
 
     <script>
-        // Create floating decorative elements
+        // Create floating decorations
         function createFloatingDecorations() {
-            const container = document.getElementById('floatingDecorations');
-            const symbols = ['❤️', '💖', '💕', '🌸', '🌹', '💐', '✨', '🌟', '💫', '🥰'];
+            const decorations = ['💕', '💖', '🌹', '💝', '✨', '💗', '💓'];
+            const container = document.body;
             
-            for (let i = 0; i < 25; i++) {
-                const element = document.createElement('div');
-                element.classList.add('floating-element');
-                element.textContent = symbols[Math.floor(Math.random() * symbols.length)];
-                
-                // Random properties
-                const leftPos = Math.random() * 100;
-                const delay = Math.random() * 8;
-                const duration = 8 + Math.random() * 7;
-                const size = 20 + Math.random() * 35;
-                const color = getRandomPastelColor();
-                
-                element.style.left = `%`;
-                element.style.animationDelay = `s`;
-                element.style.animationDuration = `s`;
-                element.style.fontSize = `px`;
-                element.style.color = color;
-                
-                container.appendChild(element);
+            for (let i = 0; i < 15; i++) {
+                const decoration = document.createElement('div');
+                decoration.className = 'floating-decoration';
+                decoration.textContent = decorations[Math.floor(Math.random() * decorations.length)];
+                decoration.style.left = Math.random() * 100 + '%';
+                decoration.style.top = Math.random() * 100 + '%';
+                decoration.style.animationDelay = Math.random() * 3 + 's';
+                decoration.style.animationDuration = (Math.random() * 3 + 4) + 's';
+                decoration.setAttribute('aria-hidden', 'true');
+                container.appendChild(decoration);
             }
         }
         
-        // Get random pastel color
-        function getRandomPastelColor() {
-            const colors = [
-                '#ffb6c1', '#ffc0cb', '#ffd1dc', '#ffcccb', 
-                '#ffb3de', '#ffccd5', '#ffb7c5', '#f8c8dc'
-            ];
-            return colors[Math.floor(Math.random() * colors.length)];
+        // Canvas confetti implementation
+        class Confetti {
+            constructor() {
+                this.canvas = document.getElementById('confetti-canvas');
+                this.ctx = this.canvas.getContext('2d');
+                this.particles = [];
+                this.resize();
+                window.addEventListener('resize', () => this.resize());
+            }
+            
+            resize() {
+                this.canvas.width = window.innerWidth;
+                this.canvas.height = window.innerHeight;
+            }
+            
+            createParticle() {
+                const colors = ['#ff69b4', '#ff1493', '#8a2be2', '#ffd700', '#ff6347'];
+                return {
+                    x: Math.random() * this.canvas.width,
+                    y: -10,
+                    size: Math.random() * 8 + 4,
+                    color: colors[Math.floor(Math.random() * colors.length)],
+                    speedY: Math.random() * 3 + 2,
+                    speedX: Math.random() * 2 - 1,
+                    rotation: Math.random() * 360,
+                    rotationSpeed: Math.random() * 5 - 2.5
+                };
+            }
+            
+            start() {
+                // Create initial burst
+                for (let i = 0; i < 100; i++) {
+                    this.particles.push(this.createParticle());
+                }
+                this.animate();
+            }
+            
+            animate() {
+                this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+                
+                // Update and draw particles
+                this.particles = this.particles.filter(particle => {
+                    particle.y += particle.speedY;
+                    particle.x += particle.speedX;
+                    particle.rotation += particle.rotationSpeed;
+                    particle.speedY += 0.1; // Gravity
+                    
+                    this.ctx.save();
+                    this.ctx.translate(particle.x, particle.y);
+                    this.ctx.rotate(particle.rotation * Math.PI / 180);
+                    this.ctx.fillStyle = particle.color;
+                    this.ctx.fillRect(-particle.size / 2, -particle.size / 2, particle.size, particle.size);
+                    this.ctx.restore();
+                    
+                    return particle.y < this.canvas.height + 10;
+                });
+                
+                // Continue animation if particles exist
+                if (this.particles.length > 0) {
+                    requestAnimationFrame(() => this.animate());
+                }
+            }
+            
+            stop() {
+                this.particles = [];
+                this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+            }
         }
         
         // Handle button interactions
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', () => {
             createFloatingDecorations();
             
             const yesBtn = document.getElementById('yesBtn');
             const noBtn = document.getElementById('noBtn');
-            const responseDisplay = document.getElementById('responseDisplay');
             const celebrationMessage = document.getElementById('celebrationMessage');
+            const confetti = new Confetti();
             
             let noClickCount = 0;
-            const noButtonPhrases = [
-                "I Need to Think",
-                "Are you sure?",
-                "Maybe...",
-                "Really sure?",
-                "Hmm...",
-                "The other button looks better!",
-                "You're persistent!",
-                "Okay, you win!",
-                "YES! Just kidding...",
+            const noTexts = [
+                "Are you sure? 🥺",
+                "Really? Think again! 💭",
+                "The pink button is calling you! 💕",
+                "Don't be shy! 😊",
+                "Come on, you know you want to! 💖",
+                "Last chance to reconsider! 🌟",
+                "The other button looks better! ✨",
+                "Pretty please? 🙏",
+                "I promise it'll be fun! 🎉",
                 "FINE! YES!"
             ];
             
-            const romanticResponses = [
-                "You've made me the happiest soul alive! I love you infinitely! 💫",
-                "My heart is dancing with joy! Forever yours! 🌹",
-                "This is the best day of my life! I love you endlessly! ✨",
-                "Yes! A million times yes! You are my everything! 💖",
-                "My answer will always be YES! Today, tomorrow, forever! 🌟"
-            ];
+            let audioContext = null;
+            
+            // Defensive audio resume
+            function resumeAudio() {
+                if (audioContext && audioContext.state === 'suspended') {
+                    audioContext.resume();
+                }
+            }
             
             // Yes button clicked
-            yesBtn.addEventListener('click', function() {
-                const randomResponse = romanticResponses[Math.floor(Math.random() * romanticResponses.length)];
-                celebrationMessage.innerHTML = randomResponse;
-                responseDisplay.style.display = 'block';
-                
-                // Create celebration
-                createCelebration();
+            yesBtn.addEventListener('click', () => {
+                resumeAudio();
+                celebrationMessage.innerHTML = "🎉 YAY! You said YES! This is the best day ever! 💕✨";
+                celebrationMessage.style.fontSize = '2rem';
+                celebrationMessage.style.fontWeight = 'bold';
                 
                 // Change button appearance
-                yesBtn.innerHTML = '<i class="fas fa-heart"></i> I SAID YES!';
-                yesBtn.style.background = 'linear-gradient(to right, #8a2be2, #ff1493)';
-                yesBtn.style.animation = 'none';
+                yesBtn.innerHTML = '💖 I SAID YES!';
+                yesBtn.style.transform = 'scale(1.2)';
                 
                 // Hide no button
                 noBtn.style.display = 'none';
                 
-                // Play romantic sound
-                playRomanticSound();
+                // Start confetti
+                confetti.start();
+                
+                // Announce to screen readers
+                celebrationMessage.setAttribute('role', 'alert');
+            });
+            
+            // Keyboard support for Yes button
+            yesBtn.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    yesBtn.click();
+                }
             });
             
             // No button clicked
-            noBtn.addEventListener('click', function() {
+            noBtn.addEventListener('click', () => {
+                resumeAudio();
                 noClickCount++;
                 
-                // If clicked many times, turn into yes
-                if (noClickCount >= noButtonPhrases.length - 2) {
+                if (noClickCount >= noTexts.length) {
+                    // After many clicks, convert to yes
                     celebrationMessage.innerHTML = "Okay, I can't resist any longer! YES, I'll be your Valentine! 💕";
-                    responseDisplay.style.display = 'block';
+                    celebrationMessage.style.fontSize = '2rem';
                     noBtn.style.display = 'none';
-                    yesBtn.innerHTML = '<i class="fas fa-heart"></i> She finally said YES!';
-                    createCelebration();
+                    yesBtn.innerHTML = '💖 She finally said YES!';
+                    yesBtn.style.transform = 'scale(1.2)';
+                    confetti.start();
                     return;
                 }
                 
                 // Change button text
-                noBtn.textContent = noButtonPhrases[noClickCount];
+                noBtn.textContent = noTexts[noClickCount - 1] || noTexts[noTexts.length - 1];
                 
                 // Make yes button more appealing
-                yesBtn.style.transform = 'scale(1.1)';
-                setTimeout(() => {
-                    yesBtn.style.transform = 'scale(1)';
-                }, 300);
+                yesBtn.style.transform = 'scale(' + (1 + noClickCount * 0.05) + ')';
                 
-                // Move no button
-                const moveX = (Math.random() - 0.5) * (40 + noClickCount * 10);
-                const moveY = (Math.random() - 0.5) * (30 + noClickCount * 10);
-                noBtn.style.transform = `translate(px, px)`;
-                
-                // Show hint messages
-                if (noClickCount === 2) {
+                // Show message
+                if (noClickCount % 3 === 0) {
                     celebrationMessage.innerHTML = "The pink button seems happier... 😊";
-                    responseDisplay.style.display = 'block';
-                    setTimeout(() => {
-                        responseDisplay.style.display = 'none';
-                    }, 2000);
                 }
                 
-                if (noClickCount === 4) {
-                    celebrationMessage.innerHTML = "I think you know the right answer... 💝";
-                    responseDisplay.style.display = 'block';
-                    setTimeout(() => {
-                        responseDisplay.style.display = 'none';
-                    }, 2000);
+                // Move no button to random position (evasive behavior)
+                moveNoButton();
+            });
+            
+            // Keyboard support for No button
+            noBtn.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    noBtn.click();
                 }
             });
             
-            // Make no button move on hover
-            noBtn.addEventListener('mouseover', function() {
-                if (noClickCount > 1) {
-                    const maxMove = 80;
-                    const moveX = (Math.random() - 0.5) * maxMove;
-                    const moveY = (Math.random() - 0.5) * maxMove;
-                    this.style.transform = `translate(px, px)`;
+            // Make no button move on hover after first click
+            noBtn.addEventListener('mouseenter', () => {
+                if (noClickCount > 0) {
+                    moveNoButton();
                 }
             });
+            
+            function moveNoButton() {
+                const container = noBtn.parentElement;
+                const containerRect = container.getBoundingClientRect();
+                const btnRect = noBtn.getBoundingClientRect();
+                
+                // Calculate available space
+                const maxX = containerRect.width - btnRect.width - 60;
+                const maxY = 100; // Vertical movement within reasonable bounds
+                
+                // Random position
+                const randomX = Math.random() * maxX - maxX / 2;
+                const randomY = Math.random() * maxY - maxY / 2;
+                
+                noBtn.style.position = 'relative';
+                noBtn.style.left = randomX + 'px';
+                noBtn.style.top = randomY + 'px';
+                noBtn.style.transition = 'all 0.3s ease';
+            }
+            
+            // Initialize audio context on user interaction
+            document.body.addEventListener('click', () => {
+                if (!audioContext) {
+                    audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                }
+            }, { once: true });
         });
-        
-        // Create celebration effect
-        function createCelebration() {
-            const container = document.getElementById('floatingDecorations');
-            container.innerHTML = '';
-            
-            const symbols = ['❤️', '💖', '💕', '🎉', '🥳', '✨', '🌟', '🎊', '🌸', '🌹'];
-            
-            // Create explosion of elements
-            for (let i = 0; i < 60; i++) {
-                setTimeout(() => {
-                    const element = document.createElement('div');
-                    element.classList.add('floating-element');
-                    element.textContent = symbols[Math.floor(Math.random() * symbols.length)];
-                    
-                    const leftPos = Math.random() * 100;
-                    const delay = Math.random() * 1;
-                    const duration = 1.5 + Math.random() * 2;
-                    const size = 30 + Math.random() * 50;
-                    const colors = ['#ff1493', '#8a2be2', '#ff69b4', '#00b09b', '#ff416c'];
-                    const color = colors[Math.floor(Math.random() * colors.length)];
-                    
-                    element.style.left = `%`;
-                    element.style.animationDelay = `s`;
-                    element.style.animationDuration = `s`;
-                    element.style.fontSize = `px`;
-                    element.style.color = color;
-                    
-                    container.appendChild(element);
-                    
-                    // Remove after animation
-                    setTimeout(() => {
-                        if (element.parentNode) {
-                            element.remove();
-                        }
-                    }, duration * 1000);
-                }, i * 30);
-            }
-            
-            // Recreate regular floating elements after celebration
-            setTimeout(createFloatingDecorations, 3000);
-        }
-        
-        // Play romantic sound
-        function playRomanticSound() {
-            try {
-                const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-                
-                // Create a romantic chord
-                const notes = [523.25, 659.25, 783.99]; // C, E, G
-                let time = audioContext.currentTime;
-                
-                for (let i = 0; i < notes.length; i++) {
-                    const oscillator = audioContext.createOscillator();
-                    const gainNode = audioContext.createGain();
-                    
-                    oscillator.connect(gainNode);
-                    gainNode.connect(audioContext.destination);
-                    
-                    oscillator.frequency.value = notes[i];
-                    oscillator.type = 'sine';
-                    
-                    gainNode.gain.setValueAtTime(0, time);
-                    gainNode.gain.linearRampToValueAtTime(0.2, time + 0.1);
-                    gainNode.gain.exponentialRampToValueAtTime(0.01, time + 1.5);
-                    
-                    oscillator.start(time);
-                    oscillator.stop(time + 1.5);
-                    
-                    time += 0.05;
-                }
-            } catch (e) {
-                // Audio not supported
-            }
-        }
     </script>
 </body>
 </html>
