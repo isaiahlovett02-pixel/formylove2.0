@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Be My Valentine ❤️</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Montserrat:wght@300;400;500&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(135deg, #8a2be2, #ff1493, #ff69b4);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+        
+        .valentine-container {
+            width: 100%;
+            max-width: 1000px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 35px;
+            overflow: hidden;
+            box-shadow: 0 25px 60px rgba(138, 43, 226, 0.4);
+            border: 15px solid #ff69b4;
+            position: relative;
+            animation: fadeIn 1.5s ease-out;
+        }
+        
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: translateY(30px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        
+        .header-section {
+            background: linear-gradient(90deg, #8a2be2, #ff1493);
+            padding: 50px 40px;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header-section::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100"><path fill="white" fill-opacity="0.1" d="M50,20 C70,20 85,35 85,55 C85,75 70,90 50,90 C30,90 15,75 15,55 C15,35 30,20 50,20 Z" /></svg>');
+            background-size: 120px;
+        }
+        
+        .main-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 4.5rem;
+            margin-bottom: 15px;
+            text-shadow: 3px 3px 0px rgba(0, 0, 0, 0.2);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .tagline {
+            font-size: 1.8rem;
+            font-weight: 300;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+            font-family: 'Dancing Script', cursive;
+        }
+        
+        .content-section {
+            padding: 50px 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .romantic-icons {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin: 40px 0;
+            flex-wrap: wrap;
+        }
+        
+        .icon-box {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #ffb6c1, #ff69b4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 4.5rem;
+            box-shadow: 0 10px 30px rgba(255, 105, 180, 0.3);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .icon-box::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            transform: scale(0);
+            transition: transform 0.4s ease;
+        }
+        
+        .icon-box:hover {
+            transform: translateY(-15px) rotate(5deg);
+            box-shadow: 0 20px 40px rgba(255, 105, 180, 0.5);
+        }
+        
+        .icon-box:hover::after {
+            transform: scale(1);
+        }
+        
+        .love-letter {
+            background: linear-gradient(135deg, #fff0f5, #ffe4e9);
+            padding: 40px;
+            border-radius: 25px;
+            margin: 40px 0;
+            width: 90%;
+            max-width: 800px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            border-left: 8px solid #ff69b4;
+            position: relative;
+        }
+        
+        .letter-content {
+            font-size: 1.7rem;
+            line-height: 1.8;
+            color: #444;
+            text-align: center;
+            font-weight: 400;
+        }
+        
+        .letter-content::first-letter {
+            font-family: 'Dancing Script', cursive;
+            font-size: 4rem;
+            color: #ff1493;
+            float: left;
+            line-height: 0.8;
+            margin-right: 10px;
+        }
+        
+        .proposal-section {
+            background: linear-gradient(135deg, #ff69b4, #ff1493);
+            padding: 40px;
+            border-radius: 30px;
+            margin: 40px 0;
+            text-align: center;
+            box-shadow: 0 15px 35px rgba(255, 20, 147, 0.3);
+            width: 90%;
+            max-width: 800px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .proposal-section::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100"><path fill="white" fill-opacity="0.1" d="M50,30 C60,20 80,20 90,30 C100,40 100,60 90,70 C80,80 60,80 50,70 C40,80 20,80 10,70 C0,60 0,40 10,30 C20,20 40,20 50,30 Z" /></svg>');
+            background-size: 100px;
+        }
+        
+        .proposal-question {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.8rem;
+            color: white;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.2);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .buttons-row {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+        
+        .response-btn {
+            padding: 22px 60px;
+            font-size: 2rem;
+            border: none;
+            border-radius: 70px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            min-width: 250px;
+            justify-content: center;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .response-btn::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.1);
+            z-index: -1;
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
+        }
+        
+        .response-btn:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .yes-btn {
+            background: linear-gradient(to right, #00b09b, #96c93d);
+            color: white;
+            animation: gentlePulse 2.5s infinite;
+        }
+        
+        @keyframes gentlePulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .no-btn {
+            background: linear-gradient(to right, #ff416c, #ff4b2b);
+            color: white;
+        }
+        
+        .response-btn:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.35);
+        }
+        
+        .response-btn:active {
+            transform: translateY(-2px);
+        }
+        
+        .response-display {
+            min-height: 150px;
+            margin: 50px 0 30px;
+            text-align: center;
+            display: none;
+            width: 90%;
+            max-width: 800px;
+        }
+        
+        .celebration-message {
+            font-family: 'Dancing Script', cursive;
+            font-size: 4rem;
+            color: #ff1493;
+            text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.1);
+            animation: messageAppear 1s ease-out;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 25px;
+            box-shadow: 0 10px 30px rgba(255, 20, 147, 0.2);
+        }
+        
+        @keyframes messageAppear {
+            0% { transform: scale(0.3) rotate(-10deg); opacity: 0; }
+            100% { transform: scale(1) rotate(0); opacity: 1; }
+        }
+        
+        .floating-decorations {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 0;
+        }
+        
+        .floating-element {
+            position: absolute;
+            font-size: 28px;
+            opacity: 0;
+            animation: floatAround 10s linear infinite;
+        }
+        
+        @keyframes floatAround {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.7;
+            }
+            90% {
+                opacity: 0.7;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        .footer-section {
+            padding: 30px;
+            text-align: center;
+            color: #ff69b4;
+            font-size: 1.4rem;
+            border-top: 3px dashed #ffb6c1;
+            background: rgba(255, 255, 255, 0.8);
+            font-weight: 500;
+        }
+        
+        .footer-heart {
+            color: #ff1493;
+            animation: heartbeat 1.2s infinite;
+        }
+        
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+        
+        @media (max-width: 900px) {
+            .main-title {
+                font-size: 3.5rem;
+            }
+            
+            .proposal-question {
+                font-size: 3rem;
+            }
+            
+            .celebration-message {
+                font-size: 3rem;
+            }
+            
+            .response-btn {
+                padding: 20px 45px;
+                font-size: 1.7rem;
+                min-width: 200px;
+            }
+            
+            .icon-box {
+                width: 120px;
+                height: 120px;
+                font-size: 3.5rem;
+            }
+            
+            .letter-content {
+                font-size: 1.5rem;
+            }
+        }
+        
+        @media (max-width: 600px) {
+            .valentine-container {
+                border-width: 10px;
+            }
+            
+            .main-title {
+                font-size: 2.8rem;
+            }
+            
+            .proposal-question {
+                font-size: 2.5rem;
+            }
+            
+            .buttons-row {
+                flex-direction: column;
+                align-items: center;
+                gap: 30px;
+            }
+            
+            .response-btn {
+                width: 90%;
+            }
+            
+            .icon-box {
+                width: 100px;
+                height: 100px;
+                font-size: 3rem;
+            }
+            
+            .romantic-icons {
+                gap: 20px;
+            }
+            
+            .content-section {
+                padding: 40px 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="valentine-container">
+        <div class="floating-decorations" id="floatingDecorations"></div>
+        
+        <div class="header-section">
+            <h1 class="main-title">My Forever Valentine</h1>
+            <p class="tagline">You are the love story I always dreamed of</p>
+        </div>
+        
+        <div class="content-section">
+            <div class="romantic-icons">
+                <div class="icon-box">
+                    <i class="fas fa-heart"></i>
+                </div>
+                <div class="icon-box">
+                    <i class="fas fa-kiss-wink-heart"></i>
+                </div>
+                <div class="icon-box">
+                    <i class="fas fa-ring"></i>
+                </div>
+                <div class="icon-box">
+                    <i class="fas fa-star"></i>
+                </div>
+            </div>
+            
+            <div class="love-letter">
+                <div class="letter-content">
+                    From the moment we met, my world changed colors. Every laugh we share, 
+                    every glance we exchange, every moment together feels like a beautiful dream. 
+                    You are my sunshine on cloudy days, my anchor in stormy seas, and the greatest 
+                    blessing I've ever received. My heart beats for you, today and always.
+                </div>
+            </div>
+            
+            <div class="proposal-section">
+                <div class="proposal-question">
+                    Will you be my Valentine? ❤️
+                </div>
+                
+                <div class="buttons-row">
+                    <button class="response-btn yes-btn" id="yesBtn">
+                        <i class="fas fa-heart"></i> YES, A Thousand Times!
+                    </button>
+                    <button class="response-btn no-btn" id="noBtn">
+                        <i class="fas fa-times"></i> I Need to Think
+                    </button>
+                </div>
+            </div>
+            
+            <div class="response-display" id="responseDisplay">
+                <p class="celebration-message" id="celebrationMessage"></p>
+            </div>
+        </div>
+        
+        <div class="footer-section">
+            <p>Made with <i class="fas fa-heart footer-heart"></i> for the most wonderful person in the universe</p>
+            <p>You complete me in every way</p>
+        </div>
+    </div>
+
+    <script>
+        // Create floating decorative elements
+        function createFloatingDecorations() {
+            const container = document.getElementById('floatingDecorations');
+            const symbols = ['❤️', '💖', '💕', '🌸', '🌹', '💐', '✨', '🌟', '💫', '🥰'];
+            
+            for (let i = 0; i < 25; i++) {
+                const element = document.createElement('div');
+                element.classList.add('floating-element');
+                element.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+                
+                // Random properties
+                const leftPos = Math.random() * 100;
+                const delay = Math.random() * 8;
+                const duration = 8 + Math.random() * 7;
+                const size = 20 + Math.random() * 35;
+                const color = getRandomPastelColor();
+                
+                element.style.left = `%`;
+                element.style.animationDelay = `s`;
+                element.style.animationDuration = `s`;
+                element.style.fontSize = `px`;
+                element.style.color = color;
+                
+                container.appendChild(element);
+            }
+        }
+        
+        // Get random pastel color
+        function getRandomPastelColor() {
+            const colors = [
+                '#ffb6c1', '#ffc0cb', '#ffd1dc', '#ffcccb', 
+                '#ffb3de', '#ffccd5', '#ffb7c5', '#f8c8dc'
+            ];
+            return colors[Math.floor(Math.random() * colors.length)];
+        }
+        
+        // Handle button interactions
+        document.addEventListener('DOMContentLoaded', function() {
+            createFloatingDecorations();
+            
+            const yesBtn = document.getElementById('yesBtn');
+            const noBtn = document.getElementById('noBtn');
+            const responseDisplay = document.getElementById('responseDisplay');
+            const celebrationMessage = document.getElementById('celebrationMessage');
+            
+            let noClickCount = 0;
+            const noButtonPhrases = [
+                "I Need to Think",
+                "Are you sure?",
+                "Maybe...",
+                "Really sure?",
+                "Hmm...",
+                "The other button looks better!",
+                "You're persistent!",
+                "Okay, you win!",
+                "YES! Just kidding...",
+                "FINE! YES!"
+            ];
+            
+            const romanticResponses = [
+                "You've made me the happiest soul alive! I love you infinitely! 💫",
+                "My heart is dancing with joy! Forever yours! 🌹",
+                "This is the best day of my life! I love you endlessly! ✨",
+                "Yes! A million times yes! You are my everything! 💖",
+                "My answer will always be YES! Today, tomorrow, forever! 🌟"
+            ];
+            
+            // Yes button clicked
+            yesBtn.addEventListener('click', function() {
+                const randomResponse = romanticResponses[Math.floor(Math.random() * romanticResponses.length)];
+                celebrationMessage.innerHTML = randomResponse;
+                responseDisplay.style.display = 'block';
+                
+                // Create celebration
+                createCelebration();
+                
+                // Change button appearance
+                yesBtn.innerHTML = '<i class="fas fa-heart"></i> I SAID YES!';
+                yesBtn.style.background = 'linear-gradient(to right, #8a2be2, #ff1493)';
+                yesBtn.style.animation = 'none';
+                
+                // Hide no button
+                noBtn.style.display = 'none';
+                
+                // Play romantic sound
+                playRomanticSound();
+            });
+            
+            // No button clicked
+            noBtn.addEventListener('click', function() {
+                noClickCount++;
+                
+                // If clicked many times, turn into yes
+                if (noClickCount >= noButtonPhrases.length - 2) {
+                    celebrationMessage.innerHTML = "Okay, I can't resist any longer! YES, I'll be your Valentine! 💕";
+                    responseDisplay.style.display = 'block';
+                    noBtn.style.display = 'none';
+                    yesBtn.innerHTML = '<i class="fas fa-heart"></i> She finally said YES!';
+                    createCelebration();
+                    return;
+                }
+                
+                // Change button text
+                noBtn.textContent = noButtonPhrases[noClickCount];
+                
+                // Make yes button more appealing
+                yesBtn.style.transform = 'scale(1.1)';
+                setTimeout(() => {
+                    yesBtn.style.transform = 'scale(1)';
+                }, 300);
+                
+                // Move no button
+                const moveX = (Math.random() - 0.5) * (40 + noClickCount * 10);
+                const moveY = (Math.random() - 0.5) * (30 + noClickCount * 10);
+                noBtn.style.transform = `translate(px, px)`;
+                
+                // Show hint messages
+                if (noClickCount === 2) {
+                    celebrationMessage.innerHTML = "The pink button seems happier... 😊";
+                    responseDisplay.style.display = 'block';
+                    setTimeout(() => {
+                        responseDisplay.style.display = 'none';
+                    }, 2000);
+                }
+                
+                if (noClickCount === 4) {
+                    celebrationMessage.innerHTML = "I think you know the right answer... 💝";
+                    responseDisplay.style.display = 'block';
+                    setTimeout(() => {
+                        responseDisplay.style.display = 'none';
+                    }, 2000);
+                }
+            });
+            
+            // Make no button move on hover
+            noBtn.addEventListener('mouseover', function() {
+                if (noClickCount > 1) {
+                    const maxMove = 80;
+                    const moveX = (Math.random() - 0.5) * maxMove;
+                    const moveY = (Math.random() - 0.5) * maxMove;
+                    this.style.transform = `translate(px, px)`;
+                }
+            });
+        });
+        
+        // Create celebration effect
+        function createCelebration() {
+            const container = document.getElementById('floatingDecorations');
+            container.innerHTML = '';
+            
+            const symbols = ['❤️', '💖', '💕', '🎉', '🥳', '✨', '🌟', '🎊', '🌸', '🌹'];
+            
+            // Create explosion of elements
+            for (let i = 0; i < 60; i++) {
+                setTimeout(() => {
+                    const element = document.createElement('div');
+                    element.classList.add('floating-element');
+                    element.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+                    
+                    const leftPos = Math.random() * 100;
+                    const delay = Math.random() * 1;
+                    const duration = 1.5 + Math.random() * 2;
+                    const size = 30 + Math.random() * 50;
+                    const colors = ['#ff1493', '#8a2be2', '#ff69b4', '#00b09b', '#ff416c'];
+                    const color = colors[Math.floor(Math.random() * colors.length)];
+                    
+                    element.style.left = `%`;
+                    element.style.animationDelay = `s`;
+                    element.style.animationDuration = `s`;
+                    element.style.fontSize = `px`;
+                    element.style.color = color;
+                    
+                    container.appendChild(element);
+                    
+                    // Remove after animation
+                    setTimeout(() => {
+                        if (element.parentNode) {
+                            element.remove();
+                        }
+                    }, duration * 1000);
+                }, i * 30);
+            }
+            
+            // Recreate regular floating elements after celebration
+            setTimeout(createFloatingDecorations, 3000);
+        }
+        
+        // Play romantic sound
+        function playRomanticSound() {
+            try {
+                const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                
+                // Create a romantic chord
+                const notes = [523.25, 659.25, 783.99]; // C, E, G
+                let time = audioContext.currentTime;
+                
+                for (let i = 0; i < notes.length; i++) {
+                    const oscillator = audioContext.createOscillator();
+                    const gainNode = audioContext.createGain();
+                    
+                    oscillator.connect(gainNode);
+                    gainNode.connect(audioContext.destination);
+                    
+                    oscillator.frequency.value = notes[i];
+                    oscillator.type = 'sine';
+                    
+                    gainNode.gain.setValueAtTime(0, time);
+                    gainNode.gain.linearRampToValueAtTime(0.2, time + 0.1);
+                    gainNode.gain.exponentialRampToValueAtTime(0.01, time + 1.5);
+                    
+                    oscillator.start(time);
+                    oscillator.stop(time + 1.5);
+                    
+                    time += 0.05;
+                }
+            } catch (e) {
+                // Audio not supported
+            }
+        }
+    </script>
+</body>
+</html>
